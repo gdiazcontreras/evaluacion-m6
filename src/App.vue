@@ -2,6 +2,34 @@
   <div class="container">
     <h1>📚 Biblioteca Virtual</h1>
 
+    <section class="formulario">
+      <h2>Agregar libro</h2>
+
+      <input
+        v-model="nuevoTitulo"
+        type="text"
+        placeholder="Título del libro"
+      />
+
+      <input
+        v-model="nuevoAutor"
+        type="text"
+        placeholder="Autor"
+      />
+
+      <input
+        v-model.number="nuevoAnio"
+        type="number"
+        placeholder="Año"
+      />
+
+      <button @click="agregarLibro">
+        ➕ Agregar libro
+      </button>
+    </section>
+
+    <hr />
+
     <p v-if="libros.length > 0">
       Hay {{ libros.length }} libros disponibles
     </p>
@@ -10,19 +38,13 @@
       No hay libros disponibles
     </p>
 
-    <button @click="mostrarLista = !mostrarLista">
-      {{ mostrarLista ? 'Ocultar libros' : 'Mostrar libros' }}
-    </button>
-
-    <div v-show="mostrarLista">
-      <Libro
-        v-for="libro in libros"
-        :key="libro.id"
-        :titulo="libro.titulo"
-        :autor="libro.autor"
-        :anio="libro.anio"
-      />
-    </div>
+    <Libro
+      v-for="libro in libros"
+      :key="libro.id"
+      :titulo="libro.titulo"
+      :autor="libro.autor"
+      :anio="libro.anio"
+    />
   </div>
 </template>
 
@@ -38,28 +60,44 @@ export default {
 
   data() {
     return {
-      mostrarLista: true,
-
       libros: [
         {
           id: 1,
           titulo: 'Cien años de soledad',
           autor: 'Gabriel García Márquez',
           anio: 1967
-        },
-        {
-          id: 2,
-          titulo: 'El Principito',
-          autor: 'Antoine de Saint-Exupéry',
-          anio: 1943
-        },
-        {
-          id: 3,
-          titulo: '1984',
-          autor: 'George Orwell',
-          anio: 1949
         }
-      ]
+      ],
+
+      nuevoTitulo: '',
+      nuevoAutor: '',
+      nuevoAnio: ''
+    }
+  },
+
+  methods: {
+    agregarLibro() {
+      if (
+        !this.nuevoTitulo ||
+        !this.nuevoAutor ||
+        !this.nuevoAnio
+      ) {
+        alert('Por favor completa todos los campos')
+        return
+      }
+
+      const nuevoLibro = {
+        id: Date.now(),
+        titulo: this.nuevoTitulo,
+        autor: this.nuevoAutor,
+        anio: this.nuevoAnio
+      }
+
+      this.libros.push(nuevoLibro)
+
+      this.nuevoTitulo = ''
+      this.nuevoAutor = ''
+      this.nuevoAnio = ''
     }
   }
 }
@@ -75,20 +113,39 @@ export default {
 
 h1 {
   color: #42b883;
+  margin-bottom: 1.5rem;
+}
+
+.formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 400px;
+  margin: 0 auto 2rem;
+}
+
+input {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
 }
 
 button {
-  margin: 1rem 0;
-  padding: 0.8rem 1.2rem;
+  padding: 12px;
   border: none;
   border-radius: 8px;
   background-color: #42b883;
   color: white;
-  cursor: pointer;
   font-size: 1rem;
+  cursor: pointer;
 }
 
 button:hover {
   background-color: #369870;
+}
+
+hr {
+  margin: 2rem 0;
 }
 </style>
