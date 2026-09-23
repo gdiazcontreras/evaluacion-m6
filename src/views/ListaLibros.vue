@@ -113,6 +113,16 @@ export default {
 </script>
 
 <style scoped>
+h1 {
+  color: #5b2c83;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  color: #555;
+  font-size: 1.25rem;
+}
+
 .container {
   max-width: 900px;
   margin: 2rem auto;
