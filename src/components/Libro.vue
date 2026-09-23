@@ -23,23 +23,10 @@
 
 <script>
 export default {
-  name: 'Libro',
-
   props: {
-    titulo: {
-      type: String,
-      required: true
-    },
-
-    autor: {
-      type: String,
-      required: true
-    },
-
-    anio: {
-      type: Number,
-      required: true
-    }
+    titulo: String,
+    autor: String,
+    anio: Number
   },
 
   emits: ['eliminar']
@@ -48,21 +35,18 @@ export default {
 
 <style scoped>
 .card {
-  max-width: 500px;
+  background-color: white;
   margin: 1rem auto;
   padding: 1.5rem;
+  max-width: 500px;
 
   border-radius: 12px;
-  border: 1px solid #ddd;
 
-  background-color: #f8f8f8;
-
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 h3 {
   margin-bottom: 1rem;
-  color: #4a4a4a;
 }
 
 p {
@@ -72,20 +56,24 @@ p {
 .btn-eliminar {
   margin-top: 1rem;
 
-  padding: 10px 14px;
+  padding: 10px 16px;
 
   border: none;
   border-radius: 8px;
 
-  background-color: #e74c3c;
+  background-color: #ef4444;
   color: white;
+
+  font-size: 1rem;
+  font-weight: 500;
 
   cursor: pointer;
 
-  transition: 0.2s;
+  transition: 0.2s ease;
 }
 
 .btn-eliminar:hover {
-  background-color: #c0392b;
+  background-color: #dc2626;
+  transform: translateY(-1px);
 }
 </style>
