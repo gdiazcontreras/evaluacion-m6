@@ -24,8 +24,10 @@ La aplicación es una **SPA (Single Page Application)** desarrollada con **Vue.j
 ```text
 src/
 ├── assets/
-│   ├── captura-inicio.png
-│   └── captura-libros.png
+│   ├── hero.png
+│   ├── library.png
+│   ├── vite.svg
+│   └── vue.svg
 ├── components/
 │   └── Libro.vue
 ├── views/
